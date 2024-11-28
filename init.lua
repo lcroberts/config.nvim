@@ -42,7 +42,7 @@ require('lazy').setup {
     {
       'lcroberts/LazyLanguages.nvim',
       url = 'git@github.com:lcroberts/LazyLanguages.nvim', -- Keep while repo is private
-      -- dev = true,
+      dev = true,
       event = 'VeryLazy',
       dependencies = {
         'neovim/nvim-lspconfig',

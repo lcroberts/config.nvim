@@ -92,9 +92,9 @@ return {
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-          map('<leader>it', function()
+          map('<leader>ti', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-          end, '[I]nlay Hints [T]oggle')
+          end, '[t]oggle [i]nlay hints')
         end
       end,
     })

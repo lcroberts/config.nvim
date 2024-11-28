@@ -197,7 +197,7 @@ return {
           package.loaded.gitsigns.diffthis '~'
         end, { desc = 'git diff against last commit' })
 
-        vim.keymap.set({ 'n' }, '<leader>gd', package.loaded.gitsigns.toggle_deleted, { desc = 'toggle [g]it show [d]eleted' })
+        vim.keymap.set({ 'n' }, '<leader>td', package.loaded.gitsigns.toggle_deleted, { desc = '[t]oggle git show [d]eleted' })
         vim.keymap.set({ 'n' }, ']c', function()
           if vim.wo.diff then
             return ']c'

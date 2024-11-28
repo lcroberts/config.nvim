@@ -12,8 +12,6 @@ return {
       -- requirements installed.
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
         build = 'make',
         cond = function()
           return vim.fn.executable 'make' == 1
@@ -124,14 +122,12 @@ return {
         }
       end
 
-      vim.keymap.set({ 'n' }, '<leader>so', require('telescope.builtin').oldfiles, { desc = '[s]earch recently [o]pened files' })
       vim.keymap.set({ 'n' }, '<leader>sb', require('telescope.builtin').buffers, { desc = '[s]earch existing [b]uffers' })
-      vim.keymap.set({ 'n' }, '<leader>sf', require('telescope.builtin').find_files, { desc = '[s]earch [files]' })
+      vim.keymap.set({ 'n' }, '<leader>sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
       vim.keymap.set({ 'n' }, '<leader>sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp page' })
       vim.keymap.set({ 'n' }, '<leader>sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
       vim.keymap.set({ 'n' }, '<leader>sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
       vim.keymap.set({ 'n' }, '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
-      vim.keymap.set({ 'n' }, '<leader>sr', require('telescope.builtin').resume, { desc = '[s]earch [r]esume' })
       vim.keymap.set({ 'n' }, '<leader>s/', function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.
         require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -140,7 +136,6 @@ return {
         })
       end, { desc = '[f]uzzily search [/] in current buffer' })
 
-      vim.keymap.set({ 'n' }, '<leader>ss', require('telescope.builtin').git_files, { desc = '[s]earch git files' })
       -- Theme search
       vim.keymap.set({ 'n' }, '<leader>st', require('telescope.builtin').colorscheme, { desc = '[s]earch [t]hemes' })
     end,

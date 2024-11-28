@@ -72,15 +72,6 @@ return {
         map('gD', function()
           vim.lsp.buf.declaration()
         end, '[G]oto [D]eclaration')
-        map('<leader>wa', function()
-          vim.lsp.buf.add_workspace_folder()
-        end, '[W]orkspace [A]dd Folder')
-        map('<leader>wr', function()
-          vim.lsp.buf.remove_workspace_folder()
-        end, '[W]orkspace [R]emove Folder')
-        map('<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, '[W]orkspace [L]ist Folders')
 
         -- Diagnostic
         map(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')

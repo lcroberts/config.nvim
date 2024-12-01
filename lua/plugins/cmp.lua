@@ -112,7 +112,6 @@ return {
           },
           { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip' },
-          { name = 'neorg' },
           { name = 'path' },
           { name = 'buffer' },
         },

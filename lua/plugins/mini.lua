@@ -10,7 +10,6 @@ return {
         try_as_border = true,
       },
     }
-    require('mini.jump2d').setup()
     require('mini.splitjoin').setup {
       mappings = { toggle = 'g,' },
     }

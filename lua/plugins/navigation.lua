@@ -67,4 +67,11 @@ return {
       { '<leader>fv', '<cmd>Oil<cr>', desc = 'File View' },
     },
   },
+
+  {
+    'ggandor/leap.nvim',
+    config = function()
+      vim.keymap.set({ 'n', 'x', 'o' }, '<CR>', '<Plug>(leap)')
+    end,
+  },
 }

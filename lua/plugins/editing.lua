@@ -8,18 +8,6 @@ return {
   'tpope/vim-repeat',
 
   {
-    'tpope/vim-rhubarb',
-    dependencies = {
-      {
-        'tpope/vim-fugitive',
-        keys = {
-          { '<leader>gs', vim.cmd.Git, desc = 'Open git' },
-        },
-      },
-    },
-  },
-
-  {
     'mbbill/undotree',
     event = 'VeryLazy',
     keys = {

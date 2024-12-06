@@ -34,34 +34,6 @@ return {
   },
 
   {
-    'RRethy/vim-illuminate',
-    event = 'VeryLazy',
-    opts = {
-      delay = 200,
-      large_file_cutoff = 5000,
-    },
-    config = function(_, opts)
-      require('illuminate').configure(opts)
-    end,
-    keys = {
-      {
-        ']]',
-        function()
-          require('illuminate').goto_next_reference(true)
-        end,
-        desc = 'Next Reference',
-      },
-      {
-        '[[',
-        function()
-          require('illuminate').goto_prev_reference(true)
-        end,
-        desc = 'Previous Reference',
-      },
-    },
-  },
-
-  {
     'folke/todo-comments.nvim',
     event = 'VeryLazy',
     cmd = { 'TodoTrouble', 'TodoTelescope' },

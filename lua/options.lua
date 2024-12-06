@@ -33,8 +33,6 @@ opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes:2'
 opt.splitright = true
 opt.splitbelow = true
 

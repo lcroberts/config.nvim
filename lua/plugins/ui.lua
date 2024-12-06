@@ -61,12 +61,6 @@ return {
   },
 
   {
-    'nvim-lualine/lualine.nvim',
-    event = 'UIEnter',
-    opts = {},
-  },
-
-  {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     opts = function()

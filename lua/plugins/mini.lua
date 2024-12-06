@@ -10,6 +10,7 @@ return {
         try_as_border = true,
       },
     }
+    require('mini.statusline').setup {}
     require('mini.splitjoin').setup {
       mappings = { toggle = 'g,' },
     }

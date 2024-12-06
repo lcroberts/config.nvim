@@ -61,67 +61,6 @@ return {
   },
 
   {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    opts = function()
-      -- IDK why I have to do the text like this but it works
-      local logo = [[
- ██████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗     ████████╗██╗███╗   ███╗███████╗██╗
-██╔════╝██╔═══██╗██╔══██╗██║████╗  ██║██╔════╝     ╚══██╔══╝██║████╗ ████║██╔════╝██║
-██║     ██║   ██║██║  ██║██║██╔██╗ ██║██║  ███╗       ██║   ██║██╔████╔██║█████╗  ██║
-██║     ██║   ██║██║  ██║██║██║╚██╗██║██║   ██║       ██║   ██║██║╚██╔╝██║██╔══╝  ╚═╝
-╚██████╗╚██████╔╝██████╔╝██║██║ ╚████║╚██████╔╝       ██║   ██║██║ ╚═╝ ██║███████╗██╗
- ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝        ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝
-        ]]
-      logo = string.rep('\n', 4) .. logo .. '\n\n'
-      local opts = {
-        theme = 'doom',
-        hide = {
-          -- this is taken care of by lualine
-          -- enabling this messes up the actual laststatus setting after loading a file
-          statusline = false,
-        },
-        config = {
-          header = vim.split(logo, '\n'),
-          center = {
-            { action = 'Telescope find_files', desc = ' Search files', icon = ' ', key = 's' },
-            { action = 'Telescope live_grep', desc = ' Grep text', icon = ' ', key = 'g' },
-            { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
-            { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
-            { action = 'Lazy', desc = ' Lazy', icon = '󰒲 ', key = 'l' },
-            { action = 'Mason', desc = ' Mason', icon = ' ', key = 'm' },
-            { action = 'EnterConfig', desc = ' Config', icon = ' ', key = 'c' },
-            { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
-          },
-          footer = function()
-            local stats = require('lazy').stats()
-            local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return { '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
-          end,
-        },
-      }
-
-      for _, button in ipairs(opts.config.center) do
-        button.desc = button.desc .. string.rep(' ', 43 - #button.desc)
-        button.key_format = '  %s'
-      end
-
-      -- close Lazy and re-open when the dashboard is ready
-      if vim.o.filetype == 'lazy' then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd('User', {
-          pattern = 'DashboardLoaded',
-          callback = function()
-            require('lazy').show()
-          end,
-        })
-      end
-
-      return opts
-    end,
-  },
-
-  {
     'stevearc/dressing.nvim',
     event = 'VeryLazy',
     opts = {},
@@ -171,40 +110,48 @@ return {
         changedelete = { text = '~' },
         untracked = { text = '│' },
       }, -- See `:help gitsigns.txt`
-      on_attach = function()
-        vim.keymap.set({ 'n' }, '<leader>hs', package.loaded.gitsigns.stage_hunk, { desc = 'git stage hunk' })
-        vim.keymap.set({ 'n' }, '<leader>hr', package.loaded.gitsigns.reset_hunk, { desc = 'git reset hunk' })
-        vim.keymap.set({ 'n' }, '<leader>hS', package.loaded.gitsigns.stage_buffer, { desc = 'git Stage buffer' })
-        vim.keymap.set({ 'n' }, '<leader>hu', package.loaded.gitsigns.undo_stage_hunk, { desc = 'undo stage hunk' })
-        vim.keymap.set({ 'n' }, '<leader>hR', package.loaded.gitsigns.reset_buffer, { desc = 'git Reset buffer' })
-        vim.keymap.set({ 'n' }, '<leader>hp', package.loaded.gitsigns.preview_hunk, { desc = 'preview git hunk' })
-        vim.keymap.set({ 'n' }, '<leader>hd', package.loaded.gitsigns.diffthis, { desc = 'git diff against index' })
+      on_attach = function(bufnr)
+        local gitsigns = require 'gitsigns'
 
-        vim.keymap.set({ 'n' }, '<leader>hb', function()
-          package.loaded.gitsigns.blame_line { full = false }
-        end, { desc = 'git blame line' })
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
 
-        vim.keymap.set({ 'n' }, '<leader>hD', function()
-          package.loaded.gitsigns.diffthis '~'
-        end, { desc = 'git diff against last commit' })
-
-        vim.keymap.set({ 'n' }, '<leader>td', package.loaded.gitsigns.toggle_deleted, { desc = '[t]oggle git show [d]eleted' })
-        vim.keymap.set({ 'n' }, ']c', function()
+        -- Navigation
+        map('n', ']c', function()
           if vim.wo.diff then
-            return ']c'
+            vim.cmd.normal { ']c', bang = true }
+          else
+            gitsigns.nav_hunk 'next'
           end
-          vim.schedule(function()
-            package.loaded.gitsigns.next_hunk()
-          end)
-          return '<Ignore>'
-        end, { desc = 'Jump to next hunk' })
-        vim.keymap.set({ 'n' }, '<leader>hs', function()
-          package.loaded.gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'stage git hunk' })
+        end, { desc = 'Next Hunk' })
 
-        vim.keymap.set({ 'n' }, '<leader>hr', function()
-          package.loaded.gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'reset git hunk' })
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal { '[c', bang = true }
+          else
+            gitsigns.nav_hunk 'prev'
+          end
+        end, { desc = 'Prev Hunk' })
+
+        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage Hunk' })
+        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Reset Hunk' })
+        map('v', '<leader>hs', function()
+          gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = 'Stage Hunk' })
+        map('v', '<leader>hr', function()
+          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+        end, { desc = 'Reset Hunk' })
+        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Stage Buffer' })
+        map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
+        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset Buffer' })
+        map('n', '<leader>hb', function()
+          gitsigns.blame_line { full = true }
+        end, { desc = 'Blame Line' })
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview Hunk' })
+        map('n', '<leader>td', gitsigns.toggle_deleted, { desc = 'Toggle Deleted' })
       end,
     },
     dependencies = {

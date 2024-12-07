@@ -23,6 +23,7 @@ return {
       pattern = {
         'help',
         'dashboard',
+        'snacks-dashboard',
         'lazy',
         'mason',
         'notify',

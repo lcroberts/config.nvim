@@ -1,5 +1,3 @@
-local vim = vim
-
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -7,7 +5,7 @@ return {
     {
       'williamboman/mason.nvim',
       event = 'VeryLazy',
-      config = true,
+      opts = {},
     },
     {
       'j-hui/fidget.nvim',
@@ -89,10 +87,5 @@ return {
         end
       end,
     })
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-    require('mason').setup()
   end,
 }

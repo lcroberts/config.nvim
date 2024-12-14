@@ -62,9 +62,6 @@ return {
         map('K', function()
           vim.lsp.buf.hover()
         end, 'Hover Documentation')
-        map('<M-k>', function()
-          vim.lsp.buf.signature_help()
-        end, 'Signature Documentation')
 
         -- Lesser used LSP functionality
         map('gD', function()

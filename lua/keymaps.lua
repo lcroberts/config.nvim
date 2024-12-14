@@ -11,8 +11,6 @@ vim.keymap.set('x', '<leader>P', [["_d"+P]], { desc = 'Paste from clipboard with
 
 vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>zz', { desc = 'Next in quickfix list' })
 vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>zz', { desc = 'Prev in quickfix list' })
--- vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz', { desc = 'Next in location list' })
--- vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz', { desc = 'Prev in location list' })
 
 vim.keymap.set({ 'n', 't' }, '<C-h>', '<cmd> TmuxNavigateLeft<CR>', { desc = 'window left' })
 vim.keymap.set({ 'n', 't' }, '<C-l>', '<cmd> TmuxNavigateRight<CR>', { desc = 'window right' })

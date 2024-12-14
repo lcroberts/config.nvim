@@ -26,7 +26,7 @@ return {
         preset = {
           keys = {
             { action = ':Telescope find_files', desc = ' Search files', icon = ' ', key = 's' },
-            { action = ':Telescope live_grep', desc = ' Grep text', icon = ' ', key = 'g' },
+            { action = require('local_plugins.multigrep').live_multigrep, desc = ' Grep text', icon = ' ', key = 'g' },
             { action = ':Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
             { action = ':ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
             { action = ':Lazy', desc = ' Lazy', icon = '󰒲 ', key = 'l' },

@@ -34,6 +34,9 @@ return {
       automatic_install = true,
       automatic_update = true,
     },
+    completion = {
+      plugin = 'blink.cmp',
+    },
   },
   import = 'LazyLanguages.plugins',
 }

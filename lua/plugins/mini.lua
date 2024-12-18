@@ -14,9 +14,6 @@ return {
     require('mini.splitjoin').setup {
       mappings = { toggle = 'g,' },
     }
-    require('mini.pairs').setup {
-      modes = { insert = true, command = false, terminal = false },
-    }
     require('mini.surround').setup()
 
     vim.api.nvim_create_autocmd('FileType', {

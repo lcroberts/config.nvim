@@ -1,5 +1,4 @@
 -- Mapping mode: n (normal), x (visual), i (insert), c (command)
-local vim = vim -- Deal with lsp for vim api
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

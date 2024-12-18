@@ -43,6 +43,8 @@ return {
               BlinkCmpKindOperator = { fg = C.base, bg = C.blue },
               BlinkCmpKindTypeParameter = { fg = C.base, bg = C.blue },
               BlinkCmpKindCopilot = { fg = C.base, bg = C.teal },
+              BlinkCmpMenu = { bg = C.surface0 },
+              BlinkCmpDoc = { bg = C.surface1 },
             }
           end,
         },

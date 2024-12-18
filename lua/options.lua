@@ -1,7 +1,6 @@
 -- Set <space> as the leader keyinit
 -- See `:help mapleader`
 -- [[ Setting options ]]
-local vim = vim
 local opt = vim.opt
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

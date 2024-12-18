@@ -8,6 +8,7 @@ return {
     'williamboman/mason.nvim',
     'stevearc/conform.nvim',
     'mfussenegger/nvim-dap',
+    'saghen/blink.cmp',
     {
       'chrisgrieser/nvim-lsp-endhints',
       event = 'LspAttach',
@@ -33,9 +34,6 @@ return {
     mason = {
       automatic_install = true,
       automatic_update = true,
-    },
-    completion = {
-      plugin = 'blink.cmp',
     },
   },
   import = 'LazyLanguages.plugins',

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   {
     'L3MON4D3/LuaSnip',
@@ -27,11 +28,29 @@ return {
   },
   {
     'saghen/blink.cmp',
-    version = 'v0.*',
-    -- !Important! Make sure you're using the latest release of LuaSnip
-    -- `main` does not work at the moment
     dependencies = { 'L3MON4D3/LuaSnip' },
+
+    version = 'v0.*',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        nerd_font_variant = 'mono',
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      signature = {
+        enabled = true,
+      },
+      accept = {
+        auto_bracket = { enabled = true },
+      },
+      treesitter = { 'lsp' },
+      opts_extend = { 'sources.default' },
+
       snippets = {
         expand = function(snippet)
           require('luasnip').lsp_expand(snippet)
@@ -46,13 +65,14 @@ return {
           require('luasnip').jump(direction)
         end,
       },
-      sources = {
-        default = { 'lsp', 'path', 'luasnip', 'buffer' },
-      },
+
       completion = {
+        documentation = {
+          auto_show = true,
+        },
         menu = {
           draw = {
-            padding = 0,
+            padding = { 0, 1 },
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
               kind_icon = {

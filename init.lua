@@ -1,4 +1,3 @@
-local vim = vim
 require 'options'
 require 'keymaps'
 
@@ -40,6 +39,7 @@ if success then
 end
 vim.g.lazylangs = {
   override_path = 'languages', -- '.' separated path relative to the lua directory
+  completion_plugin = 'blink.cmp',
   langs = langs, -- string[] of language names
 }
 

@@ -48,3 +48,17 @@ vim.keymap.set({ 'i' }, '<A-;>', '<End>;', { desc = 'Append Semicolon' })
 vim.keymap.set({ 'i' }, '<A-,>', '<End>,', { desc = 'Append Comma' })
 
 vim.keymap.set({ 'c' }, '<M-/>', [[\/]], { desc = 'Insert escaped slash' })
+
+-- Example terminal open with command
+-- local job_id = 0
+-- vim.keymap.set('n', '<space>open', function()
+--   vim.cmd.vnew()
+--   vim.cmd.term()
+--   vim.cmd.wincmd 'J'
+--   vim.api.nvim_win_set_height(0, 15)
+--   job_id = vim.bo.channel
+-- end)
+--
+-- vim.keymap.set('n', '<space>example', function()
+--   vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
+-- end)

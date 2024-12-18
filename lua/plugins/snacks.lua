@@ -65,14 +65,6 @@ return {
         desc = 'Notification History',
       },
       {
-        '<leader>tt',
-        function()
-          Snacks.terminal.toggle()
-        end,
-        mode = { 't', 'n' },
-        desc = 'Toggle Terminal',
-      },
-      {
         ']]',
         function()
           Snacks.words.jump(vim.v.count1)

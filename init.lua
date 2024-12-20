@@ -40,7 +40,7 @@ end
 vim.g.lazylangs = {
   override_path = 'languages', -- '.' separated path relative to the lua directory
   completion_plugin = 'blink.cmp',
-  langs = langs, -- string[] of language names
+  langs = langs,               -- string[] of language names
 }
 
 require('lazy').setup {

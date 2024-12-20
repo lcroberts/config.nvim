@@ -5,7 +5,23 @@ return {
     {
       'MeanderingProgrammer/render-markdown.nvim',
       ft = 'markdown',
-      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
+        {
+          'saghen/blink.cmp',
+          opts = {
+            sources = {
+              -- add markdown to your completion providers
+              default = { 'markdown' },
+              providers = {
+                markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink' },
+              },
+            },
+            opts_extend = { 'sources.default', 'sources.providers' },
+          },
+        }
+      }, -- if you prefer nvim-web-devicons
       ---@module 'render-markdown'
       ---@type render.md.UserConfig
       opts = {

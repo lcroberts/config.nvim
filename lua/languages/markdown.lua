@@ -10,6 +10,7 @@ return {
         'nvim-tree/nvim-web-devicons',
         {
           'saghen/blink.cmp',
+          opts_extend = { 'sources' },
           opts = {
             sources = {
               -- add markdown to your completion providers
@@ -18,7 +19,6 @@ return {
                 markdown = { name = 'RenderMarkdown', module = 'render-markdown.integ.blink' },
               },
             },
-            opts_extend = { 'sources.default', 'sources.providers' },
           },
         }
       }, -- if you prefer nvim-web-devicons

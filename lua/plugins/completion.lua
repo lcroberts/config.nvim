@@ -31,6 +31,7 @@ return {
     dependencies = { 'L3MON4D3/LuaSnip' },
 
     version = 'v0.*',
+    opts_extend = { 'sources' },
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -42,14 +43,6 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
-      signature = {
-        enabled = true,
-      },
-      accept = {
-        auto_bracket = { enabled = true },
-      },
-      treesitter = { 'lsp' },
-      opts_extend = { 'sources.default' },
 
       snippets = {
         expand = function(snippet)
@@ -66,6 +59,9 @@ return {
         end,
       },
 
+      signature = {
+        enabled = true,
+      },
       completion = {
         documentation = {
           auto_show = true,

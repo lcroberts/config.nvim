@@ -1,6 +1,6 @@
 return {
-  'lcroberts/LazyLanguages.nvim',
-  url = 'git@github.com:lcroberts/LazyLanguages.nvim', -- Keep while repo is private
+  'lcroberts/lazylangs.nvim',
+  url = 'git@github.com:lcroberts/lazylangs.nvim', -- Keep while repo is private
   dev = true,
   event = 'VeryLazy',
   dependencies = {
@@ -50,7 +50,7 @@ return {
       },
     },
   },
-  ---@module 'LazyLanguages'
+  ---@module 'lazylangs'
   ---@type ll.Config
   opts = {
     mason = {
@@ -58,5 +58,5 @@ return {
       automatic_update = true,
     },
   },
-  import = 'LazyLanguages.plugins',
+  import = 'lazylangs.plugins',
 }

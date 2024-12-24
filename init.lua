@@ -39,8 +39,10 @@ if success then
 end
 vim.g.lazylangs = {
   override_path = 'languages', -- '.' separated path relative to the lua directory
+  formatting_plugin = "conform",
   completion_plugin = 'blink.cmp',
-  langs = langs,               -- string[] of language names
+  linting_plugin = 'nvim-lint',
+  langs = langs, -- string[] of language names
 }
 
 require('lazy').setup {

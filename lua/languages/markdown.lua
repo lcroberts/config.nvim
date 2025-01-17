@@ -20,7 +20,7 @@ return {
               },
             },
           },
-        }
+        },
       }, -- if you prefer nvim-web-devicons
       ---@module 'render-markdown'
       ---@type render.md.UserConfig
@@ -43,10 +43,12 @@ return {
         attachments = {
           img_folder = '_resources',
         },
+        disable_frontmatter = false,
+        preferred_link_style = 'markdown',
         workspaces = {
           {
-            name = 'school',
-            path = '~/MarkdownNotes/School Notes/',
+            name = 'Notes',
+            path = '~/Notes/',
           },
           {
             name = 'no-vault',
@@ -72,6 +74,20 @@ return {
       event = 'VeryLazy',
       build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
       opts = {
+        integrations = {
+          markdown = {
+            resolve_image_path = function(document_path, image_path, fallback)
+              local working_dir = vim.fn.getcwd()
+              -- Format image path for Obsidian notes
+              if working_dir:find '~/Notes/' then
+                return working_dir .. '/' .. image_path
+              end
+              require ''
+              -- Fallback to the default behavior
+              return fallback(document_path, image_path)
+            end,
+          },
+        },
         backend = 'kitty',
         processor = 'magick_cli',
       },
@@ -92,4 +108,9 @@ return {
   mason_packages = {
     'markdown-oxide',
   },
+  setup = function()
+    vim.keymap.set('n', '<leader>sn', function()
+      require('telescope.builtin').find_files { cwd = '~/Notes/' }
+    end, { desc = 'Search Notes' })
+  end,
 }

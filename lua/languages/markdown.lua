@@ -27,6 +27,13 @@ return {
       opts = {
         enabled = true,
         preset = 'obsidian',
+        checkbox = {
+          checked = { scope_highlight = '@markup.strikethrough' },
+          custom = {
+            in_progress = { raw = '[~]', rendered = '󰥔', highlight = 'DiagnosticWarn' },
+            important = { raw = '[!]', rendered = '', highlight = 'DiagnosticError' },
+          },
+        },
       },
     },
     {
@@ -39,6 +46,12 @@ return {
       opts = {
         ui = {
           enable = false,
+          checkboxes = {
+            [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
+            -- ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
+            ['x'] = { char = '', hl_group = 'ObsidianDone' },
+            -- ['!'] = { char = '', hl_group = 'ObsidianImportant' },
+          },
         },
         attachments = {
           img_folder = '_resources',

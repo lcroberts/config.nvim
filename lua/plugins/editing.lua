@@ -83,4 +83,21 @@ return {
       },
     },
   },
+
+  {
+    'jmbuhr/otter.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {},
+    keys = {
+      {
+        '<leader>to',
+        function()
+          require('otter').activate()
+        end,
+        desc = 'Otter Activate',
+      },
+    },
+  },
 }

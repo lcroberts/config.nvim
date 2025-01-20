@@ -56,7 +56,7 @@ return {
         attachments = {
           img_folder = '_resources',
         },
-        disable_frontmatter = false,
+        disable_frontmatter = true,
         preferred_link_style = 'markdown',
         workspaces = {
           {
@@ -93,19 +93,11 @@ return {
     },
   },
   lsp = {
-    name = 'markdown_oxide',
-    server_configuration = {
-      capabilities = {
-        workspace = {
-          didChangeWatchedFiles = {
-            dynamicRegistration = true,
-          },
-        },
-      },
-    },
+    name = 'marksman',
+    server_configuration = {},
   },
   mason_packages = {
-    'markdown-oxide',
+    'marksman',
   },
   setup = function()
     vim.keymap.set('n', '<leader>sn', function()

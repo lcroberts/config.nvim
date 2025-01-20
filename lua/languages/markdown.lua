@@ -87,20 +87,6 @@ return {
       event = 'VeryLazy',
       build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
       opts = {
-        integrations = {
-          markdown = {
-            resolve_image_path = function(document_path, image_path, fallback)
-              local working_dir = vim.fn.getcwd()
-              -- Format image path for Obsidian notes
-              if working_dir:find '~/Notes/' then
-                return working_dir .. '/' .. image_path
-              end
-              require ''
-              -- Fallback to the default behavior
-              return fallback(document_path, image_path)
-            end,
-          },
-        },
         backend = 'kitty',
         processor = 'magick_cli',
       },

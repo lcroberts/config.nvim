@@ -15,6 +15,14 @@ return {
         'catppuccin/nvim',
         name = 'catppuccin',
         opts = {
+          integrations = {
+            fidget = true,
+            harpoon = true,
+            snacks = {
+              enabled = true,
+              indent_scope_color = 'flamingo',
+            },
+          },
           custom_highlights = function(C)
             return {
               BlinkCmpKindSnippet = { fg = C.base, bg = C.mauve },

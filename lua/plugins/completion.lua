@@ -1,36 +1,10 @@
 ---@diagnostic disable: missing-fields
 return {
   {
-    'L3MON4D3/LuaSnip',
-    -- follow latest release.
-    version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = 'make install_jsregexp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    opts = {},
-    config = function(_, opts)
-      require('luasnip').setup(opts)
-
-      -- Prevent cursed af snippet behavior
-      -- vim.api.nvim_create_autocmd('ModeChanged', {
-      --   pattern = '*',
-      --   callback = function()
-      --     if
-      --       ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-      --       and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-      --       and not require('luasnip').session.jump_active
-      --     then
-      --       require('luasnip').unlink_current()
-      --     end
-      --   end,
-      -- })
-    end,
-  },
-  {
     'saghen/blink.cmp',
-    dependencies = { 'L3MON4D3/LuaSnip' },
+    dependencies = { 'rafamadriz/friendly-snippets' },
 
-    version = 'v0.*',
+    version = 'v1.*',
     opts_extend = { 'sources' },
 
     ---@module 'blink.cmp'
@@ -43,7 +17,6 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
-      snippets = { preset = 'luasnip' },
       signature = {
         enabled = true,
       },

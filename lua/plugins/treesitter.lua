@@ -18,7 +18,7 @@ return {
           'vimdoc',
           'lua',
           'luadoc',
-          'query',
+          -- 'query', -- currently has issues with php parser
           'markdown',
           'markdown_inline',
         },

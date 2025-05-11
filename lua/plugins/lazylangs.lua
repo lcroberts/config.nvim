@@ -13,7 +13,7 @@ return {
       'mfussenegger/nvim-lint',
       config = function()
         -- Disable default enabled linters
-        local lint = require('lint')
+        local lint = require 'lint'
         lint.linters_by_ft.clojure = nil
         lint.linters_by_ft.dockerfile = nil
         lint.linters_by_ft.inko = nil
@@ -55,7 +55,7 @@ return {
   opts = {
     mason = {
       automatic_install = true,
-      automatic_update = true,
+      automatic_update = false,
     },
   },
   import = 'lazylangs.plugins',

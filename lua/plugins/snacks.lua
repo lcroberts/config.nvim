@@ -21,33 +21,6 @@ return {
         enabled = true,
         style = 'compact',
       },
-      dashboard = {
-        enabled = true,
-        preset = {
-          keys = {
-            { action = ':Telescope find_files', desc = ' Search files', icon = ' ', key = 's' },
-            { action = require('local_plugins.multigrep').live_multigrep, desc = ' Grep text', icon = ' ', key = 'g' },
-            { action = ':Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
-            { action = ':ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
-            { action = ':Lazy', desc = ' Lazy', icon = '󰒲 ', key = 'l' },
-            { action = ':Mason', desc = ' Mason', icon = ' ', key = 'm' },
-            { action = ':EnterConfig', desc = ' Config', icon = ' ', key = 'c' },
-            { action = ':qa', desc = ' Quit', icon = ' ', key = 'q' },
-          },
-          header = [[
-     ██████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗     ████████╗██╗███╗   ███╗███████╗██╗
-    ██╔════╝██╔═══██╗██╔══██╗██║████╗  ██║██╔════╝     ╚══██╔══╝██║████╗ ████║██╔════╝██║
-    ██║     ██║   ██║██║  ██║██║██╔██╗ ██║██║  ███╗       ██║   ██║██╔████╔██║█████╗  ██║
-    ██║     ██║   ██║██║  ██║██║██║╚██╗██║██║   ██║       ██║   ██║██║╚██╔╝██║██╔══╝  ╚═╝
-    ╚██████╗╚██████╔╝██████╔╝██║██║ ╚████║╚██████╔╝       ██║   ██║██║ ╚═╝ ██║███████╗██╗
-     ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝        ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝╚═╝]],
-        },
-        sections = {
-          { section = 'header' },
-          { section = 'keys', gap = 1, padding = 1 },
-          { section = 'startup' },
-        },
-      },
     },
     keys = {
       {

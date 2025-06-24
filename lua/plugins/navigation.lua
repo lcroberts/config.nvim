@@ -1,5 +1,3 @@
-local vim = vim
-
 return {
   {
     'christoomey/vim-tmux-navigator',
@@ -66,12 +64,5 @@ return {
     keys = {
       { '<leader>fv', '<cmd>Oil<cr>', desc = 'File View' },
     },
-  },
-
-  {
-    'ggandor/leap.nvim',
-    config = function()
-      vim.keymap.set({ 'n', 'x', 'o' }, 'm', '<Plug>(leap)')
-    end,
   },
 }

@@ -1,5 +1,3 @@
-local vim = vim
-
 return {
   {
     'nvim-treesitter/nvim-treesitter',

@@ -1,5 +1,3 @@
-local vim = vim
-
 return {
   {
     'nvim-telescope/telescope.nvim',

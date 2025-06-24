@@ -155,13 +155,12 @@ return {
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'Reset Hunk' })
         map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Stage Buffer' })
-        map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo Stage Hunk' })
         map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset Buffer' })
         map('n', '<leader>hb', function()
           gitsigns.blame_line { full = true }
         end, { desc = 'Blame Line' })
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview Hunk' })
-        map('n', '<leader>td', gitsigns.toggle_deleted, { desc = 'Toggle Deleted' })
+        map('n', '<leader>td', gitsigns.preview_hunk_inline, { desc = 'Toggle Deleted' })
       end,
     },
     dependencies = {

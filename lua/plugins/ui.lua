@@ -10,7 +10,6 @@ return {
     lazy = false,
     priority = 1000,
     dependencies = {
-      'RRethy/nvim-base16', -- Lots of baked-in themes and support to add more
       {
         'catppuccin/nvim',
         name = 'catppuccin',
@@ -68,12 +67,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    'stevearc/dressing.nvim',
-    event = 'VeryLazy',
-    opts = {},
   },
 
   {

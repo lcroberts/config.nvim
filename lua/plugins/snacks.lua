@@ -1,13 +1,13 @@
 return {
-  {
-    'folke/snacks.nvim',
-    opts = function()
-      -- Toggle the profiler
-      Snacks.toggle.profiler():map '<leader>pp'
-      -- Toggle the profiler highlights
-      Snacks.toggle.profiler_highlights():map '<leader>ph'
-    end,
-  },
+  -- {
+  --   'folke/snacks.nvim',
+  --   opts = function()
+  --     -- Toggle the profiler
+  --     Snacks.toggle.profiler():map '<leader>pp'
+  --     -- Toggle the profiler highlights
+  --     Snacks.toggle.profiler_highlights():map '<leader>ph'
+  --   end,
+  -- },
   {
     'folke/snacks.nvim',
     priority = 1000,

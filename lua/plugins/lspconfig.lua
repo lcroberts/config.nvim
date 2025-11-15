@@ -78,7 +78,11 @@ return {
         map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
         map('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-        map('<leader>rr', '<cmd>LspRestart<cr>', 'Restart LSP')
+        if vim.bo.filetype == 'rust' then
+          map('<leader>rr', '<cmd>RustAnalyzer restart<cr>', 'Restart LSP')
+        else
+          map('<leader>rr', '<cmd>LspRestart<cr>', 'Restart LSP')
+        end
 
         -- See `:help K` for why this keymap
         map('K', function()

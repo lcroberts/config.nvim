@@ -59,6 +59,8 @@ require('lazy').setup {
   },
 }
 
+vim.cmd 'colorscheme catppuccin-mocha'
+
 -- Create autocmds
 require 'autocmd'
 

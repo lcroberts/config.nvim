@@ -18,8 +18,13 @@ vim.keymap.set({ 'n', 't' }, '<C-k>', '<cmd> TmuxNavigateUp<CR>', { desc = 'wind
 
 -- Keymaps for better default experience
 vim.keymap.set({ 'n', 'x' }, '<Space>', '<Nop>', { silent = true })
--- Clear highlights
-vim.keymap.set({ 'n' }, '<Esc>', '<cmd> noh<cr>', { desc = 'Clear highlights' })
+-- Clear highlights and stop snippet
+vim.keymap.set({ 'n' }, '<Esc>', function()
+  vim.cmd 'noh'
+  if vim.snippet.active() then
+    vim.snippet.stop()
+  end
+end, { desc = 'Clear highlights and stop snippet' })
 -- Remap for dealing with word wrap
 vim.keymap.set({ 'n' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set({ 'n' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

@@ -1,7 +1,8 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'VeryLazy',
+    lazy = false,
+    build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'JoosepAlviste/nvim-ts-context-commentstring',
@@ -10,13 +11,13 @@ return {
     config = function()
       vim.g.skip_ts_context_commentstring_module = true
 
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter').setup {
         ensure_installed = {
           'vim',
           'vimdoc',
           'lua',
           'luadoc',
-          -- 'query', -- currently has issues with php parser
+          'query',
           'markdown',
           'markdown_inline',
         },

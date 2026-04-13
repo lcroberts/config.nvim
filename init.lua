@@ -44,11 +44,6 @@ vim.pack.clean = function()
     end
 end
 
-require 'plugins.ui'
-require 'plugins.mini'
-require 'plugins.treesitter'
-require 'plugins.telescope'
-
 -- local langs = { 'lua', 'bash', 'markdown' }
 -- local success, file_langs = pcall(require, 'languages')
 -- if success then

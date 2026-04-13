@@ -1,83 +1,69 @@
-return {
+vim.pack.add {
   {
-    'nvim-tree/nvim-web-devicons',
-    enabled = true,
+    src = 'https://github.com/catppuccin/nvim',
+    name = 'catppuccin',
   },
-
-  {
-    'lcroberts/persistent-colorscheme.nvim',
-    dev = true,
-    lazy = false,
-    priority = 1000,
-    dependencies = {
-      {
-        'catppuccin/nvim',
-        name = 'catppuccin',
-        opts = {
-          integrations = {
-            fidget = true,
-            harpoon = true,
-            snacks = {
-              enabled = true,
-              indent_scope_color = 'flamingo',
-            },
-          },
-          custom_highlights = function(C)
-            return {
-              BlinkCmpKindSnippet = { fg = C.base, bg = C.mauve },
-              BlinkCmpKindKeyword = { fg = C.base, bg = C.red },
-              BlinkCmpKindText = { fg = C.base, bg = C.teal },
-              BlinkCmpKindMethod = { fg = C.base, bg = C.blue },
-              BlinkCmpKindConstructor = { fg = C.base, bg = C.blue },
-              BlinkCmpKindFunction = { fg = C.base, bg = C.blue },
-              BlinkCmpKindFolder = { fg = C.base, bg = C.blue },
-              BlinkCmpKindModule = { fg = C.base, bg = C.blue },
-              BlinkCmpKindConstant = { fg = C.base, bg = C.peach },
-              BlinkCmpKindField = { fg = C.base, bg = C.green },
-              BlinkCmpKindProperty = { fg = C.base, bg = C.green },
-              BlinkCmpKindEnum = { fg = C.base, bg = C.green },
-              BlinkCmpKindUnit = { fg = C.base, bg = C.green },
-              BlinkCmpKindClass = { fg = C.base, bg = C.yellow },
-              BlinkCmpKindVariable = { fg = C.base, bg = C.flamingo },
-              BlinkCmpKindFile = { fg = C.base, bg = C.blue },
-              BlinkCmpKindInterface = { fg = C.base, bg = C.yellow },
-              BlinkCmpKindColor = { fg = C.base, bg = C.red },
-              BlinkCmpKindReference = { fg = C.base, bg = C.red },
-              BlinkCmpKindEnumMember = { fg = C.base, bg = C.red },
-              BlinkCmpKindStruct = { fg = C.base, bg = C.blue },
-              BlinkCmpKindValue = { fg = C.base, bg = C.peach },
-              BlinkCmpKindEvent = { fg = C.base, bg = C.blue },
-              BlinkCmpKindOperator = { fg = C.base, bg = C.blue },
-              BlinkCmpKindTypeParameter = { fg = C.base, bg = C.blue },
-              BlinkCmpKindCopilot = { fg = C.base, bg = C.teal },
-              BlinkCmpMenu = { bg = C.surface0 },
-              BlinkCmpDoc = { bg = C.surface1 },
-            }
-          end,
-        },
-      },
-    },
-    opts = {
-      colorscheme = 'catppuccin',
-      transparent = true,
-      transparency_options = {
-        always_transparent = {
-          'Folded',
-          'LspInlayHint',
-        },
-      },
+  'https://github.com/lcroberts/persistent-colorscheme.nvim',
+  'https://github.com/folke/which-key.nvim',
+  'https://github.com/lewis6991/gitsigns.nvim',
+}
+require('catppuccin').setup {
+  integrations = {
+    fidget = true,
+    harpoon = true,
+    snacks = {
+      enabled = true,
+      indent_scope_color = 'flamingo',
     },
   },
+  custom_highlights = function(C)
+    return {
+      BlinkCmpKindSnippet = { fg = C.base, bg = C.mauve },
+      BlinkCmpKindKeyword = { fg = C.base, bg = C.red },
+      BlinkCmpKindText = { fg = C.base, bg = C.teal },
+      BlinkCmpKindMethod = { fg = C.base, bg = C.blue },
+      BlinkCmpKindConstructor = { fg = C.base, bg = C.blue },
+      BlinkCmpKindFunction = { fg = C.base, bg = C.blue },
+      BlinkCmpKindFolder = { fg = C.base, bg = C.blue },
+      BlinkCmpKindModule = { fg = C.base, bg = C.blue },
+      BlinkCmpKindConstant = { fg = C.base, bg = C.peach },
+      BlinkCmpKindField = { fg = C.base, bg = C.green },
+      BlinkCmpKindProperty = { fg = C.base, bg = C.green },
+      BlinkCmpKindEnum = { fg = C.base, bg = C.green },
+      BlinkCmpKindUnit = { fg = C.base, bg = C.green },
+      BlinkCmpKindClass = { fg = C.base, bg = C.yellow },
+      BlinkCmpKindVariable = { fg = C.base, bg = C.flamingo },
+      BlinkCmpKindFile = { fg = C.base, bg = C.blue },
+      BlinkCmpKindInterface = { fg = C.base, bg = C.yellow },
+      BlinkCmpKindColor = { fg = C.base, bg = C.red },
+      BlinkCmpKindReference = { fg = C.base, bg = C.red },
+      BlinkCmpKindEnumMember = { fg = C.base, bg = C.red },
+      BlinkCmpKindStruct = { fg = C.base, bg = C.blue },
+      BlinkCmpKindValue = { fg = C.base, bg = C.peach },
+      BlinkCmpKindEvent = { fg = C.base, bg = C.blue },
+      BlinkCmpKindOperator = { fg = C.base, bg = C.blue },
+      BlinkCmpKindTypeParameter = { fg = C.base, bg = C.blue },
+      BlinkCmpKindCopilot = { fg = C.base, bg = C.teal },
+      BlinkCmpMenu = { bg = C.surface0 },
+      BlinkCmpDoc = { bg = C.surface1 },
+    }
+  end,
+}
+require('persistent-colorscheme').setup {
+  colorscheme = 'catppuccin',
+  transparent = true,
+  transparency_options = {
+    always_transparent = {
+      'Folded',
+      'LspInlayHint',
+    },
+  },
+}
 
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      spec = {
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+require('which-key').setup({
+  spec = {
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ebug and [D]iagnostics' },
         { '<leader>g', group = '[G]it and [G]oto' },
@@ -97,15 +83,10 @@ return {
           { '<leader>h', group = 'Git [H]unk' },
         },
       },
-    },
-  },
+})
 
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
-  {
-    'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
-    opts = {
-      signs = {
+require('gitsigns').setup({
+signs = {
         add = { text = '│' },
         change = { text = '│' },
         delete = { text = '󰍵' },
@@ -155,13 +136,6 @@ return {
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview Hunk' })
         map('n', '<leader>td', gitsigns.preview_hunk_inline, { desc = 'Toggle Deleted' })
       end,
-    },
-    dependencies = {
-      'lcroberts/persistent-colorscheme.nvim',
-    },
-    config = function(_, opts)
-      require('gitsigns').setup(opts)
-      require('persistent-colorscheme').make_prefix_transparent 'GitGutter'
-    end,
-  },
-}
+})
+
+require('persistent-colorscheme').make_prefix_transparent 'GitGutter'

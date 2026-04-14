@@ -3,28 +3,12 @@ vim.pack.add {
   'https://github.com/tpope/vim-eunuch',
   'https://github.com/tpope/vim-repeat',
   'https://github.com/mbbill/undotree',
-  {
-    src = 'https://github.com/lukas-reineke/indent-blankline.nvim',
-    name = 'ibl',
-  },
   'https://github.com/folke/todo-comments.nvim',
   'https://github.com/folke/trouble.nvim',
   'https://github.com/jmbuhr/otter.nvim',
 }
 
 vim.keymap.set('n', '<leader>tu', vim.cmd.UndotreeToggle, { desc = 'Undotree Toggle' })
-require('ibl').setup {
-  indent = {
-    char = '│',
-    tab_char = '│',
-  },
-  exclude = {
-    filetypes = {
-      'dashboard',
-      'snacks-dashboard',
-    },
-  },
-}
 
 require('todo-comments').setup {
   signs = true,

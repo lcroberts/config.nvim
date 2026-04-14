@@ -14,34 +14,34 @@ vim.api.nvim_create_autocmd('PackChanged', {
       if not ev.data.active then
         vim.cmd.packadd 'telescope-fzf-native.nvim'
       end
-      vim.fn.system('make')
+      vim.fn.system 'make'
     end
   end,
 })
 
 vim.pack.clean = function()
-    local active_plugins = {}
-    local unused_plugins = {}
+  local active_plugins = {}
+  local unused_plugins = {}
 
-    for _, plugin in ipairs(vim.pack.get()) do
-        active_plugins[plugin.spec.name] = plugin.active
-    end
+  for _, plugin in ipairs(vim.pack.get()) do
+    active_plugins[plugin.spec.name] = plugin.active
+  end
 
-    for _, plugin in ipairs(vim.pack.get()) do
-        if not active_plugins[plugin.spec.name] then
-            table.insert(unused_plugins, plugin.spec.name)
-        end
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not active_plugins[plugin.spec.name] then
+      table.insert(unused_plugins, plugin.spec.name)
     end
+  end
 
-    if #unused_plugins == 0 then
-        print("No unused plugins.")
-        return
-    end
+  if #unused_plugins == 0 then
+    print 'No unused plugins.'
+    return
+  end
 
-    local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
-    if choice == 1 then
-        vim.pack.del(unused_plugins)
-    end
+  local choice = vim.fn.confirm('Remove unused plugins?', '&Yes\n&No', 2)
+  if choice == 1 then
+    vim.pack.del(unused_plugins)
+  end
 end
 
 -- local langs = { 'lua', 'bash', 'markdown' }

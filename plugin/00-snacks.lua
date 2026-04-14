@@ -7,6 +7,7 @@ require('snacks').setup {
   words = { enabled = true },
   quickfile = { enabled = true },
   statuscolumn = { enabled = true },
+  indent = { enabled = true },
   notifier = {
     enabled = true,
     style = 'compact',

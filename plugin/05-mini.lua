@@ -10,19 +10,3 @@ require('mini.splitjoin').setup {
   mappings = { toggle = 'g,' },
 }
 require('mini.surround').setup()
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = {
-    'help',
-    'dashboard',
-    'snacks-dashboard',
-    'lazy',
-    'mason',
-    'notify',
-    'toggleterm',
-    'trouble',
-  },
-  callback = function()
-    vim.b.miniindentscope_disable = true
-  end,
-})

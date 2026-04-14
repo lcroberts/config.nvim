@@ -1,21 +1,21 @@
-vim.pack.add({
-    'https://github.com/nvim-lua/plenary.nvim',
-    'https://github.com/christoomey/vim-tmux-navigator',
-    'https://github.com/stevearc/oil.nvim',
-    {
-      src = 'https://github.com/ThePrimeagen/harpoon',
-      version = 'harpoon2',
-    }
-})
+vim.pack.add {
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/christoomey/vim-tmux-navigator',
+  'https://github.com/stevearc/oil.nvim',
+  {
+    src = 'https://github.com/ThePrimeagen/harpoon',
+    version = 'harpoon2',
+  },
+}
 
 local harpoon = require 'harpoon'
 
-harpoon:setup({
+harpoon:setup {
   settings = {
     save_on_toggle = true,
     save_on_ui_close = true,
   },
-})
+}
 vim.keymap.set('n', '<leader>ha', function()
   harpoon:list():add()
 end)
@@ -41,7 +41,7 @@ end)
 
 ---@module 'oil'
 ---@type oil.SetupOpts
-require('oil').setup({
+require('oil').setup {
   default_file_explorer = true,
   view_options = {
     show_hidden = true,
@@ -50,5 +50,5 @@ require('oil').setup({
     ['<BS>'] = 'actions.parent',
     ['.'] = 'actions.cd',
   },
-})
-vim.keymap.set('n', '<leader>fv', '<cmd>Oil<cr>', {desc = 'File View'})
+}
+vim.keymap.set('n', '<leader>fv', '<cmd>Oil<cr>', { desc = 'File View' })

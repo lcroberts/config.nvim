@@ -1,8 +1,8 @@
-vim.pack.add({
+vim.pack.add {
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
-})
+}
 
 require('telescope').setup {
   pickers = {
@@ -54,7 +54,6 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path

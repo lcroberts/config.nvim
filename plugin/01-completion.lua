@@ -1,12 +1,12 @@
-vim.pack.add({
+vim.pack.add {
   {
     src = 'https://github.com/saghen/blink.cmp',
-    version = "v1.*",
+    version = 'v1.*',
   },
   'https://github.com/rafamadriz/friendly-snippets',
-})
+}
 
-require('blink-cmp').setup{
+require('blink-cmp').setup {
   keymap = { preset = 'default' },
   appearance = {
     nerd_font_variant = 'mono',
@@ -37,11 +37,11 @@ require('blink-cmp').setup{
   },
   sources = {
     -- add lazydev to your completion providers
-    default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
     providers = {
       lazydev = {
-        name = "LazyDev",
-        module = "lazydev.integrations.blink",
+        name = 'LazyDev',
+        module = 'lazydev.integrations.blink',
         -- make lazydev completions top priority (see `:h blink.cmp`)
         score_offset = 100,
       },

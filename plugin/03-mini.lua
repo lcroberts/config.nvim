@@ -3,7 +3,7 @@ vim.pack.add {
 }
 
 require('mini.ai').setup { n_lines = 500 }
-require('mini.icons').setup({})
+require('mini.icons').setup {}
 require('mini.indentscope').setup {
   symbol = '│',
   options = {

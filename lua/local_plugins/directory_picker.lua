@@ -30,8 +30,7 @@ M.directory_search = function(opts)
         table.insert(args, pieces[2])
       end
 
-      ---@diagnostic disable-next-line: deprecated
-      return vim.tbl_flatten { args, { '--color', 'never', '.' } }
+      return vim.iter({ args, { '--color', 'never', '.' } }):flatten():totable()
     end,
     entry_maker = make_entry.gen_from_string(opts),
     cws = opts.cwd,

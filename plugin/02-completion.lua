@@ -6,14 +6,30 @@ vim.pack.add {
   'https://github.com/rafamadriz/friendly-snippets',
 }
 
+local sources = {
+  default = { 'lsp', 'path', 'snippets', 'buffer' },
+}
+if vim.tbl_contains(vim.g.lazylangs.langs, 'lua') then
+  sources = {
+    -- add lazydev to your completion providers
+    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+    providers = {
+      lazydev = {
+        name = 'LazyDev',
+        module = 'lazydev.integrations.blink',
+        -- make lazydev completions top priority (see `:h blink.cmp`)
+        score_offset = 100,
+      },
+    },
+  }
+end
+
 require('blink-cmp').setup {
   keymap = { preset = 'default' },
   appearance = {
     nerd_font_variant = 'mono',
   },
-  sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
-  },
+  sources = sources,
   signature = {
     enabled = true,
   },
@@ -32,18 +48,6 @@ require('blink-cmp').setup {
             end,
           },
         },
-      },
-    },
-  },
-  sources = {
-    -- add lazydev to your completion providers
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-    providers = {
-      lazydev = {
-        name = 'LazyDev',
-        module = 'lazydev.integrations.blink',
-        -- make lazydev completions top priority (see `:h blink.cmp`)
-        score_offset = 100,
       },
     },
   },

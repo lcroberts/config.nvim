@@ -1,32 +1,48 @@
 require 'options'
 require 'keymaps'
 
-if vim.env.PROF then
-  -- example for lazy.nvim
-  -- change this to the correct path for your plugin manager
-  local snacks = vim.fn.stdpath 'data' .. '/lazy/snacks.nvim'
-  vim.opt.rtp:append(snacks)
-  require('snacks.profiler').startup {
-    startup = {
-      -- event = 'VimEnter', -- stop profiler on this event. Defaults to `VimEnter`
-      -- event = "UIEnter",
-      event = 'VeryLazy',
-    },
-  }
-end
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then
+        vim.cmd.packadd 'nvim-treesitter'
+      end
+      vim.cmd 'TSUpdate'
+    end
+    if name == 'telescope-fzf-native.nvim' then
+      if not ev.data.active then
+        vim.cmd.packadd 'telescope-fzf-native.nvim'
+      end
+      vim.fn.system 'make'
+    end
+  end,
+})
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+vim.pack.clean = function()
+  local active_plugins = {}
+  local unused_plugins = {}
+
+  for _, plugin in ipairs(vim.pack.get()) do
+    active_plugins[plugin.spec.name] = plugin.active
+  end
+
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not active_plugins[plugin.spec.name] then
+      table.insert(unused_plugins, plugin.spec.name)
+    end
+  end
+
+  if #unused_plugins == 0 then
+    print 'No unused plugins.'
+    return
+  end
+
+  local choice = vim.fn.confirm('Remove unused plugins?', '&Yes\n&No', 2)
+  if choice == 1 then
+    vim.pack.del(unused_plugins)
+  end
 end
-vim.opt.rtp:prepend(lazypath)
 
 local langs = { 'lua', 'bash', 'markdown' }
 local success, file_langs = pcall(require, 'languages')
@@ -45,21 +61,6 @@ vim.g.lazylangs = {
   debugging_plugin = 'nvim-dap',
   langs = langs, -- string[] of language names
 }
-
-require('lazy').setup {
-  dev = {
-    path = '~/Projects/nvim-plugins/',
-    fallback = true,
-  },
-  install = {
-    colorscheme = { 'catppuccin-mocha' },
-  },
-  spec = {
-    { import = 'plugins' },
-  },
-}
-
-vim.cmd 'colorscheme catppuccin-mocha'
 
 -- Create autocmds
 require 'autocmd'

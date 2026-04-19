@@ -1,7 +1,8 @@
 local helpers = require 'helpers'
 
 local lazylangs_path = helpers.plugin_path .. 'lazylangs.nvim'
-if vim.fn.filereadable(lazylangs_path) then
+local use_local = vim.fn.filereadable(lazylangs_path)
+if use_local then
   vim.opt.runtimepath:append(lazylangs_path)
 else
   vim.pack.add {

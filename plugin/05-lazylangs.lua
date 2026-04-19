@@ -55,6 +55,5 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 require('lazylangs').setup {
   mason = {
     automatic_install = true,
-    automatic_update = false,
   },
 }

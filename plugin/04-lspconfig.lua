@@ -53,10 +53,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('i', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
     end
 
-    map('<leader>rn', function()
-      vim.lsp.buf.rename()
-    end, '[R]e[n]ame')
-
     map('<leader>ca', function()
       vim.lsp.buf.code_action()
     end, '[C]ode [A]ction')
@@ -65,11 +61,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, '[C]ode [A]ction')
 
     map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-    map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-    map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-    map('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
-    map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    map('grs', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
+    map('grw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
     if vim.bo.filetype == 'rust' then
       map('<leader>rr', '<cmd>RustAnalyzer restart<cr>', 'Restart LSP')
     else
@@ -82,13 +75,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, 'Hover Documentation')
 
     -- Lesser used LSP functionality
-    map('gD', function()
+    map('grD', function()
       vim.lsp.buf.declaration()
     end, '[G]oto [D]eclaration')
 
     -- Diagnostic
-    map(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
-    map('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
+    map(']d', function()
+      vim.diagnostic.jump { count = 1, float = true }
+    end, 'Go to next diagnostic message')
+    map('[d', function()
+      vim.diagnostic.jump { count = -1, float = true }
+    end, 'Go to previous diagnostic message')
     map('<leader>df', vim.diagnostic.open_float, 'floating diagnostic message')
     map('<leader>dl', vim.diagnostic.setloclist, 'Open diagnostics list')
 
@@ -102,5 +99,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
-
-vim.lsp.enable 'lua_ls'

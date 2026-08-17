@@ -14,6 +14,7 @@ local prompted = {} ---@type table<string, true> langs already asked about this 
 local function start(buf, lang)
   if vim.api.nvim_buf_is_valid(buf) then
     pcall(vim.treesitter.start, buf, lang)
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
 end
 
@@ -77,4 +78,3 @@ vim.wo.foldtext = 'v:lua.custom_fold_text()'
 vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.wo.foldmethod = 'expr'
 vim.opt.fillchars:append { fold = ' ' }
-vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

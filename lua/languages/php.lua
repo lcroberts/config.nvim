@@ -5,21 +5,8 @@ return {
     name = 'phpantom_lsp',
     server_configuration = {},
   },
-  linters = {
-    nvim_lint = {
-      php = { 'phpstan', 'phpcs' },
-    },
-  },
-  formatters = {
-    conform = {
-      php = { 'phpcbf' },
-    },
-  },
   mason_packages = {
     'phpantom_lsp',
-    'phpstan',
-    'phpcs',
-    'phpcbf',
     'php-debug-adapter',
   },
   setup = function()
